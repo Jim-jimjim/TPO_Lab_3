@@ -14,4 +14,4 @@ _Иногда возможны фейлы, так как для определе
 
 **Результат выполнения:**
 
-![](.\img.png)
+![](https://github.com/Jim-jimjim/TPO_Lab_3/blob/18179f8da2c08a3ee9039a26d773536da15e598b/img.png)
