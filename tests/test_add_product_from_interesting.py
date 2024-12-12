@@ -1,7 +1,6 @@
 import time
 import unittest
 from selenium import webdriver
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -22,50 +21,42 @@ class TestAddToCartFromInteresting(unittest.TestCase):
         driver = self.driver
 
         # Находим первый товар
-        first_product = self.wait.until(EC.presence_of_element_located(
-            (By.XPATH, '//*[@id="__layout"]/div/main/section[3]/div/section/div/div[2]/div[2]')
-        ))
+        first_product_xpath = '//*[@id="__layout"]/div/main/section[3]/div/section/div/div[2]/div[2]'
+        first_product = self.wait.until(EC.presence_of_element_located((By.XPATH, first_product_xpath)))
 
         # Прокручиваем страницу вниз на 5% для отображения элемента
         driver.execute_script("window.scrollBy(0, document.body.scrollHeight * 0.05);")
 
         # Нажимаем кнопку "Добавить в корзину"
-        add_to_cart_button = first_product.find_element(
-            By.XPATH, '//*[@id="__layout"]/div/main/section[3]/div/section/div/div[2]/div[2]/div/div/div/div/article/div/div/div/div[3]/button'
-        )
+        add_to_cart_button_xpath = '//*[@id="__layout"]/div/main/section[3]/div/section/div/div[2]/div[2]/div/div/div/div/article/div/div/div/div[3]/button'
+        add_to_cart_button = first_product.find_element(By.XPATH, add_to_cart_button_xpath)
         add_to_cart_button.click()
 
         # Ожидаем добавления, иначе иногда падает
         time.sleep(2)
 
         # Переходим в корзину
-        cart_button = self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH, '//*[@id="__layout"]/div/header/div[2]/div[2]/button[5]')
-        ))
+        cart_button_xpath = '//*[@id="__layout"]/div/header/div[2]/div[2]/button[5]'
+        cart_button = self.wait.until(EC.element_to_be_clickable((By.XPATH, cart_button_xpath)))
         cart_button.click()
 
         time.sleep(1)
 
         # Находим товар для добавления из блока "Вам может понравиться"
-        interesting_product = self.wait.until(EC.presence_of_element_located(
-            (By.XPATH, '//*[@id="__layout"]/div/div[4]/aside[4]/div[2]/div/div[1]/div/div/div/div[2]/footer/div/div/section/div/div[2]/div[1]')
-        ))
+        interesting_product_xpath = '//*[@id="__layout"]/div/div[4]/aside[4]/div[2]/div/div[1]/div/div/div/div[2]/div/div[2]/div[1]'
+        interesting_product = self.wait.until(EC.presence_of_element_located((By.XPATH, interesting_product_xpath)))
 
         # Нажимаем кнопку "Добавить в корзину"
-        add_to_cart_interesting_button = interesting_product.find_element(
-            By.XPATH,
-            '//*[@id="__layout"]/div/div[4]/aside[4]/div[2]/div/div[1]/div/div/div/div[2]/footer/div/div/section/div/div[2]/div[1]/div/div/div/div/article/div/div/div/div[3]/button'
-        )
+        add_to_cart_interesting_button_xpath = '//*[@id="__layout"]/div/div[4]/aside[4]/div[2]/div/div[1]/div/div/div/div[2]/div/div[2]/div[1]/div/div/div/div/article/div/div/div/div[3]/button'
+        add_to_cart_interesting_button = interesting_product.find_element(By.XPATH, add_to_cart_interesting_button_xpath)
         add_to_cart_interesting_button.click()
 
         # Ожидаем добавления, иначе иногда падает
         time.sleep(2)
 
         # Проверяем, что товары появились в корзине
-        cart_items_container = self.wait.until(EC.presence_of_element_located(
-            (By.XPATH,
-             '//*[@id="__layout"]/div/div[4]/aside[4]/div[2]/div/div[1]/div/div/div/div[2]/article/div/section[2]/div/div/section/div/div')
-        ))
+        cart_items_container_xpath = '//*[@id="__layout"]/div/div[4]/aside[4]/div[2]/div/div[1]/div/div/div/div[2]/article/div/section[2]/div/div/section/div/div'
+        cart_items_container = self.wait.until(EC.presence_of_element_located((By.XPATH, cart_items_container_xpath)))
 
         # Считываем количество дочерних элементов
         child_elements = cart_items_container.find_elements(By.XPATH, './*')
