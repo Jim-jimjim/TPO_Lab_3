@@ -26,7 +26,7 @@ class TestAddToCartFromProduct(unittest.TestCase):
 
         # Прокручиваем страницу вниз на 5% для отображения элемента
         driver.execute_script("window.scrollBy(0, document.body.scrollHeight * 0.05);")
-
+        time.sleep(1)
         first_product.click()
         time.sleep(3)
 

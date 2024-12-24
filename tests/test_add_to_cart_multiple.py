@@ -36,6 +36,9 @@ class TestAddToCartMultiple(unittest.TestCase):
         add_to_cart_button = first_product.find_element(By.XPATH, add_to_cart_button_xpath)
         add_to_cart_button.click()
 
+        # Ожидаем добавления, иначе иногда падает
+        time.sleep(1)
+
         # Нажимаем кнопку "Добавить в корзину"
         add_to_cart_button_xpath = '//*[@id="__layout"]/div/main/section[3]/div/section/div/div[2]/div[2]/div/div/div/div/article/div/div/div/div[3]/button'
         add_to_cart_button = second_product.find_element(By.XPATH, add_to_cart_button_xpath)
@@ -48,6 +51,9 @@ class TestAddToCartMultiple(unittest.TestCase):
         cart_button_xpath = '//*[@id="__layout"]/div/header/div[2]/div[2]/button[5]'
         cart_button = self.wait.until(EC.element_to_be_clickable((By.XPATH, cart_button_xpath)))
         cart_button.click()
+
+        # Ожидаем добавления, иначе иногда падает
+        time.sleep(1)
 
         # Проверяем, что товары появились в корзине
         cart_items_container_xpath = '//*[@id="__layout"]/div/div[4]/aside[4]/div[2]/div/div[1]/div/div/div/div[2]/article/div/section[2]/div/div/section/div/div'

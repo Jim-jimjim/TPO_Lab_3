@@ -21,7 +21,7 @@ class TestAddToCartFromInteresting(unittest.TestCase):
         driver = self.driver
 
         # Находим первый товар
-        first_product_xpath = '//*[@id="__layout"]/div/main/section[3]/div/section/div/div[2]/div[2]'
+        first_product_xpath = '//*[@id="__layout"]/div/main/section[3]/div/section/div/div[2]/div[1]'
         first_product = self.wait.until(EC.presence_of_element_located((By.XPATH, first_product_xpath)))
 
         # Прокручиваем страницу вниз на 5% для отображения элемента
@@ -43,11 +43,11 @@ class TestAddToCartFromInteresting(unittest.TestCase):
         time.sleep(1)
 
         # Находим товар для добавления из блока "Вам может понравиться"
-        interesting_product_xpath = '//*[@id="__layout"]/div/div[4]/aside[4]/div[2]/div/div[1]/div/div/div/div[2]/div/div[2]/div[1]'
+        interesting_product_xpath = '//*[@id="__layout"]/div/div[4]/aside[4]/div[2]/div/div[1]/div/div/div/div[2]/footer/div/div/section/div/div[2]/div[1]/div/div/div/div/article/div'
         interesting_product = self.wait.until(EC.presence_of_element_located((By.XPATH, interesting_product_xpath)))
 
         # Нажимаем кнопку "Добавить в корзину"
-        add_to_cart_interesting_button_xpath = '//*[@id="__layout"]/div/div[4]/aside[4]/div[2]/div/div[1]/div/div/div/div[2]/div/div[2]/div[1]/div/div/div/div/article/div/div/div/div[3]/button'
+        add_to_cart_interesting_button_xpath = '//*[@id="__layout"]/div/div[4]/aside[4]/div[2]/div/div[1]/div/div/div/div[2]/footer/div/div/section/div/div[2]/div[1]/div/div/div/div/article/div/div/div/div[3]/button'
         add_to_cart_interesting_button = interesting_product.find_element(By.XPATH, add_to_cart_interesting_button_xpath)
         add_to_cart_interesting_button.click()
 
